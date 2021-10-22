@@ -21,7 +21,3 @@ urlpatterns = [
     path('', include('coplate.urls')),
     path('', include('allauth.urls')),
 ]
-
-# Email settings
-
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
