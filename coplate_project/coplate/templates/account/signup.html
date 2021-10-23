@@ -8,7 +8,7 @@
 <div class="account-background">
   <main class="account">
     <div class="title">
-      <a href="#">
+      <a href="{% url 'index' %}">
         <img class="logo" src="{% static 'coplate/assets/coplate-logo.svg' %}" alt="Coplate Logo">
       </a>
     </div>
@@ -32,7 +32,7 @@
     </form>
 
     <div class="info">
-      이미 회원이신가요?<a class="link" href="#">로그인</a>
+      이미 회원이신가요?<a class="link" href="{% url 'account_login' %}">로그인</a>
     </div>
   </main>
 </div>
