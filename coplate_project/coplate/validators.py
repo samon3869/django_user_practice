@@ -9,7 +9,6 @@ def contains_special_character(value):
     return False
 
 
-# 실습으로 완성해 주세요
 def contains_uppercase_letter(value):
     for char in value:
         if char.isupper():
@@ -17,7 +16,6 @@ def contains_uppercase_letter(value):
     return False
 
 
-# 실습으로 완성해 주세요
 def contains_lowercase_letter(value):
     for char in value:
         if char.islower():
@@ -25,7 +23,6 @@ def contains_lowercase_letter(value):
     return False
 
 
-# 실습으로 완성해 주세요
 def contains_number(value):
     for char in value:
         if char.isdigit():
@@ -51,3 +48,8 @@ class CustomPasswordValidator:
 def validate_no_special_characters(value):
     if contains_special_character(value):
         raise ValidationError("특수문자를 포함할 수 없습니다.")
+
+
+def validate_restaurant_link(value):
+    if "place.naver.com" not in value and "place.map.kakao.com" not in value:
+        raise ValidationError("place.naver.com 또는 place.map.kakao.com이 들어가야 합니다.")
