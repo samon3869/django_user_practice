@@ -9,13 +9,22 @@
   <form class="review-form max-content-width" method="post" autocomplete="off">
     {% csrf_token %}
     <div class="title">
-      <input type="text" name="title" maxlength="30" placeholder="제목" class="cp-input" required id="id_title">
+      {{ form.title|add_class:"cp-input"|attr:"placeholder: 제목" }}
+      {% for error in form.title.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
     </div>
     <div class="restaurant-name">
-      <input type="text" name="restaurant_name" maxlength="20" placeholder="음식점 이름" class="cp-input" required id="id_restaurant_name">
+      {{ form.restaurant_name|add_class:"cp-input"|attr:"placeholder: 음식점 이름" }}
+      {% for error in form.restaurant_name.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
     </div>
     <div class="restaurant-link">
-      <input type="url" name="restaurant_link" maxlength="200" placeholder="네이버 또는 카카오 플레이스 주소" class="cp-input" required id="id_restaurant_link">
+      {{ form.restaurant_link|add_class:"cp-input"|attr:"placeholder: 네이버 또는 카카오 플레이스 주소" }}
+      {% for error in form.restaurant_link.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
     </div>
     <div class="rating">
       <div class="cp-stars">
@@ -24,10 +33,14 @@
         <label for="id_rating_2"><input type="radio" name="rating" value="3" id="id_rating_2" required>★★★</label>
         <label for="id_rating_3"><input type="radio" name="rating" value="4" id="id_rating_3" required>★★★★</label>
         <label for="id_rating_4"><input type="radio" name="rating" value="5" id="id_rating_4" required>★★★★★</label>
+        {{ form.rating }}
       </div>
     </div>
     <div class="content">
-      <textarea name="review" cols="40" rows="10" placeholder="리뷰를 작성해 주세요." class="cp-input" id="id_review"></textarea>
+      {{ form.content|add_class:"cp-input"|attr:"placeholder: 리뷰를 작성해 주세요." }}
+      {% for error in form.content.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
     </div>
     <div class="file">
       <div class="file-content">
