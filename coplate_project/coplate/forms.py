@@ -24,3 +24,6 @@ class ReviewForm(forms.ModelForm):
             "image3",
             "content",
         ]
+        widgets = {
+            "rating": forms.RadioSelect,
+        }
