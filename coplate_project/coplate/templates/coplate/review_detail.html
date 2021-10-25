@@ -1,0 +1,44 @@
+{% extends "coplate_base/base_with_navbar.html" %}
+
+{% load static %}
+
+{% block title %}{{ review.title }} | Coplate{% endblock title %}
+
+{% block content %}
+<main class="site-body">
+  <article class="review-detail max-content-width">
+    <div class="review-info">
+      <div class="restaurant-name">
+        <span class="cp-chip green">음식점1</span>
+      </div>
+      <h1 class="title">제목1</h1>
+      <div class="author">
+        <a class="review-author" href="#">
+          <span>유저1</span>
+        </a>
+      </div>
+      <date class="date">2021년 2월 25일</date>
+      <div class="review-rating">
+        <span class="cp-stars">★★★★★</span>
+      </div>
+    </div>
+
+    <div class="content">
+      <img class="thumb" src="#">
+      <p class="content">리뷰 내용</p>
+      <a class="location" target="_blank" href="#">
+        <img class="cp-icon" src="{% static 'coplate/icons/ic-pin.svg' %}" alt="Pin Icon">
+        <span>위치보기</span>
+      </a>
+    </div>
+
+    <div class="footer">
+      <a class="back-link" href="#">&lt; 목록으로</a>
+      <div class="buttons">
+        <a class="cp-button warn" href="#">삭제</a>
+        <a class="cp-button secondary" href="#">수정</a>
+      </div>
+    </div>
+  </article>
+</main>
+{% endblock content %}
