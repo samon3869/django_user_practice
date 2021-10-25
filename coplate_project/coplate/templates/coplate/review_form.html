@@ -6,7 +6,7 @@
 
 {% block content %}
 <main class="site-body">
-  <form class="review-form max-content-width" method="post" autocomplete="off">
+  <form class="review-form max-content-width" method="post" autocomplete="off" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="title">
       {{ form.title|add_class:"cp-input"|attr:"placeholder: 제목" }}
@@ -45,21 +45,30 @@
     <div class="file">
       <div class="file-content">
         <div>
-          <input type="file" name="image1" accept="image/*" id="id_image1">
+          {{ form.image1 }}
+          {% for error in form.image1.errors %}
+            <div class="error-message">{{ error }}</div>
+          {% endfor %}
         </div>
       </div>
     </div>
     <div class="file">
       <div class="file-content">
         <div>
-          <input type="file" name="image2" accept="image/*" id="id_image2">
+          {{ form.image2 }}
+          {% for error in form.image2.errors %}
+            <div class="error-message">{{ error }}</div>
+          {% endfor %}
         </div>
       </div>
     </div>
     <div class="file">
       <div class="file-content">
         <div>
-          <input type="file" name="image3" accept="image/*" id="id_image3">
+          {{ form.image3 }}
+          {% for error in form.image3.errors %}
+            <div class="error-message">{{ error }}</div>
+          {% endfor %}
         </div>
       </div>
     </div>
