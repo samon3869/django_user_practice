@@ -1,13 +1,13 @@
 {% extends "coplate_base/base_with_navbar.html" %}
 {% load static %}
 
-{% block title %}유저1님의 리뷰 | Coplate{% endblock title %}
+{% block title %}{{ profile_user.nickname }}님의 리뷰 | Coplate{% endblock title %}
 
 {% block content %}
 <main class="site-body">
   <div class="content-list max-content-width">
     <div class="header">
-      <h2>유저1님의 리뷰 (3)</h2>
+      <h2>{{ profile_user.nickname }}님의 리뷰 ({{ paginator.count }})</h2>
     </div>
 
     <div class="contents">
@@ -39,7 +39,7 @@
     </div>
 
     <div class="wrap-pagination">    
-      <a class="cp-ic-button circle backbutton" href="#">프로필로 돌아가기</a>
+      <a class="cp-ic-button circle backbutton" href="{% url 'profile' profile_user.id %}">프로필로 돌아가기</a>
       {% if is_paginated %}
         <ul class="pagination">
           {% if page_obj.has_previous %}

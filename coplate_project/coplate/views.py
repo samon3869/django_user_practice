@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views.generic import (
     ListView, 
@@ -104,6 +104,12 @@ class UserReviewListView(ListView):
     def get_queryset(self):
         user_id = self.kwargs.get("user_id")
         return Review.objects.filter(author_id=user_id).order_by("dt_created")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        get_object_or_404(User, id=self.kwargs.get("user_id"))
+        context["profile_user"] = get_object_or_404(User, id=self.kwargs.get("user_id"))
+        return context
 
 
 class CustomPasswordChangeView(PasswordChangeView):
