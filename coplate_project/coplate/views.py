@@ -115,7 +115,7 @@ class UserReviewListView(ListView):
 class ProfileSetView(UpdateView):
     model = User
     form_class = ProfileForm
-    template_nmae = "coplate/profile_set_form.html"
+    template_name = "coplate/profile_set_form.html"
 
     def get_object(self, queryset=None):
         return self.request.user
