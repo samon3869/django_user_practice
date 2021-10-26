@@ -112,7 +112,7 @@ class UserReviewListView(ListView):
         return context
 
 
-class ProfileSetView(UpdateView):
+class ProfileSetView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = ProfileForm
     template_name = "coplate/profile_set_form.html"
