@@ -11,9 +11,11 @@
       ></div>
       <div class="info">
         <h1 class="username">{{ profile_user.nickname }}</h1>
-        <div>
-          <p class="cp-chip intro">{{ profile_user.intro }}</p>
-        </div>
+        {% if profile_user.intro %}
+          <div>
+            <p class="cp-chip intro">{{ profile_user.intro }}</p>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
