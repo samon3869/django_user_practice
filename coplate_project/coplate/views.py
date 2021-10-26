@@ -5,6 +5,7 @@ from django.views.generic import (
     DetailView, 
     CreateView, 
     UpdateView,
+    DeleteView,
 )
 from allauth.account.views import PasswordChangeView
 from coplate.models import Review
@@ -48,6 +49,15 @@ class ReviewUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse("review-detail", kwargs={"review_id": self.object.id})
+
+
+class ReviewDeleteView(DeleteView):
+    model = Review
+    template_name = "coplate/review_confirm_delete.html"
+    pk_url_kwarg = "review_id"
+
+    def get_success_url(self):
+        return reverse("index")
 
 
 class CustomPasswordChangeView(PasswordChangeView):
