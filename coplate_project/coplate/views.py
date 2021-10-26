@@ -49,23 +49,37 @@ class ReviewCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return EmailAddress.objects.filter(user=user, verified=True).exists()
 
 
-class ReviewUpdateView(UpdateView):
+class ReviewUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Review
     form_class = ReviewForm
     template_name = 'coplate/review_form.html'
     pk_url_kwarg = "review_id"
 
+    raise_exception = True
+    # redirect_unauthenticated_users = False
+
     def get_success_url(self):
         return reverse("review-detail", kwargs={"review_id": self.object.id})
 
+    def test_func(self, user):
+        review = self.get_object()
+        return review.author == user
 
-class ReviewDeleteView(DeleteView):
+
+class ReviewDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Review
     template_name = "coplate/review_confirm_delete.html"
     pk_url_kwarg = "review_id"
 
+    raise_exception = True
+    # redirect_unauthenticated_users = False
+
     def get_success_url(self):
         return reverse("index")
+
+    def test_func(self, user):
+        review = self.get_object()
+        return review.author == user
 
 
 class CustomPasswordChangeView(PasswordChangeView):
