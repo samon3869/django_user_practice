@@ -23,7 +23,7 @@
   <div class="content-list max-content-width">
     <div class="header">
       <h2>{{ profile_user.nickname }}님의 최신 리뷰</h2>
-      <a class="cp-ic-button after circle morereview" href="#">
+      <a class="cp-ic-button after circle morereview" href="{% url 'user-review-list' profile_user.id %}">
         리뷰 전체보기
       </a>
     </div>

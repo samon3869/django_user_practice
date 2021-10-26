@@ -94,6 +94,18 @@ class ProfileView(DetailView):
         context["user_reviews"] = Review.objects.filter(author__id=user_id).order_by("-dt_created")[:4]
         return context
 
+
+class UserReviewListView(ListView):
+    model = Review
+    template_name = "coplate/user_review_list.html"
+    context_object_name = "user_reviews"
+    paginate_by = 4
+
+    def get_queryset(self):
+        user_id = self.kwargs.get("user_id")
+        return Review.objects.filter(author_id=user_id).order_by("dt_created")
+
+
 class CustomPasswordChangeView(PasswordChangeView):
     def get_success_url(self):
         return reverse('index')
