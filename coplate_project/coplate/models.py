@@ -11,6 +11,13 @@ class User(AbstractUser):
         validators=[validate_no_special_characters],
         error_messages={'unique': '이미 사용중인 닉네임입니다.'},
 )
+
+    profile_pic = models.ImageField(
+        default="default_profile_pic.jpg", upload_to="profile_pics"
+    )
+
+    intro = models.CharField(max_length=60, blank=True)
+
     def __str__(self):
         return self.email
 

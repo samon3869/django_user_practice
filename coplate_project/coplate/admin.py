@@ -5,6 +5,8 @@ from .models import User, Review
 
 admin.site.register(User, UserAdmin)
 # custom fields 라는 섹션 아래에 nicknmae field를 추가!
-UserAdmin.fieldsets += (("Custom fields", {"fields": ("nickname",)}),)
+UserAdmin.fieldsets += (
+	("Custom fields", {"fields": ("nickname", "profile_pic", "intro")}),
+)
 
 admin.site.register(Review)
