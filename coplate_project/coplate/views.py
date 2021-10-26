@@ -124,6 +124,18 @@ class ProfileSetView(LoginRequiredMixin, UpdateView):
         return reverse("index")
 
 
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = ProfileForm
+    template_name = "coplate/profile_update_form.html"
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse("profile", kwargs=({"user_id": self.request.user.id}))
+
+
 class CustomPasswordChangeView(PasswordChangeView):
     def get_success_url(self):
         return reverse('index')
