@@ -7,7 +7,8 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from braces.views import LoginRequiredMixin
+from braces.views import LoginRequiredMixin, UserPassesTestMixin
+from allauth.account.models import EmailAddress
 from allauth.account.views import PasswordChangeView
 from coplate.models import Review
 from coplate.forms import ReviewForm
@@ -29,7 +30,7 @@ class ReviewDetailView(DetailView):
     # context_object_name = "review"
 
 
-class ReviewCreateView(LoginRequiredMixin, CreateView):
+class ReviewCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Review
     form_class = ReviewForm
     template_name = "coplate/review_form.html"
@@ -40,6 +41,9 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse("review-detail", kwargs={"review_id": self.object.id})
+
+    def test_func(self, user):
+        return EmailAddress.objects.filter(user=user, verified=True).exists()
 
 
 class ReviewUpdateView(UpdateView):
