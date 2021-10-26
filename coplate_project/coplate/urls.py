@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    # review
     path('', views.IndexView.as_view(), name="index"),
     path(
     'reviews/<int:review_id>/', 
@@ -19,10 +20,12 @@ urlpatterns = [
         views.ReviewDeleteView.as_view(),
         name="review-delete",
     ),
+    # profile urls
     path('users/<int:user_id>/', views.ProfileView.as_view(), name="profile"), 
     path(
         'users/<int:user_id>/reviews/', 
         views.UserReviewListView.as_view(), 
         name="user-review-list"
     ),
+    path("set-profile/", views.ProfileSetView.as_view(), name="profile-set"),
 ]
