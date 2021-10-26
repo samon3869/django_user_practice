@@ -8,7 +8,7 @@
     {% csrf_token %}
     <span class="content">정말 리뷰를 삭제하시겠습니까?</span>
     <button class="cp-button warn" type="submit">삭제</button>
-    <a class="cp-button secondary" href="#">취소</a>
+    <a class="cp-button secondary" href="{% url 'review-detail' review.id %}">취소</a>
   </form>
 </main>
 {% endblock content %}
